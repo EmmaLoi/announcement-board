@@ -50,6 +50,7 @@ http://localhost:3000
 ```text
 announcement-board/
 ├── prisma/
+│   ├── migrations/
 │   └── schema.prisma
 ├── public/
 │   └── styles.css
@@ -62,6 +63,9 @@ announcement-board/
 ├── .env
 ├── .gitignore
 ├── package.json
+├── package-lock.json
+├── prisma.config.ts
+├── README.md
 └── app.js
 ```
 
