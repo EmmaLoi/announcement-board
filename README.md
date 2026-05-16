@@ -17,13 +17,19 @@ cd announcement-board
 npm install
 ```
 
-3. Запустити міграцію бази даних:
+3. Згенерувати Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+4. Запустити міграцію бази даних:
 
 ```bash
 npx prisma migrate dev
 ```
 
-4. Запустити сервер:
+5. Запустити сервер:
 
 ```bash
 npm start
