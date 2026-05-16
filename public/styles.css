@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+}
+
+#delete-btn {
+    background: red;
+    color: white;
+    border: none;
+}

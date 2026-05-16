@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Announcements</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h1>Оголошення</h1>
+
+    <form method="GET" action="/">
+        <input type="text" name="search" placeholder="Шукати оголошення..." value="<%= search || '' %>">
+
+        <select name="sort">
+            <option value="newest" <%=sort==='newest' ? 'selected' : '' %>>
+                Новіші спочатку
+            </option>
+            <option value="oldest" <%=sort==='oldest' ? 'selected' : '' %>>
+                Старіші спочатку
+            </option>
+        </select>
+
+        <button type="submit">Знайти</button>
+    </form>
+
+    <a href="/announcements">Додати оголошення</a>
+
+    <% if (announcements.length===0) { %>
+        <p>Оголошень не знайдено</p>
+        <% } else { %>
+            <% announcements.forEach((ann)=> { %>
+                <div class="card">
+                    <h3>
+                        <%= ann.title %>
+                    </h3>
+                    <p>
+                        <%= ann.description.length> 100
+                            ? ann.description.substring(0, 100) + '...'
+                            : ann.description %>
+                    </p>
+                    <p>Категорія: <%= ann.category %>
+                    </p>
+                    <p>Ціна: <%= ann.price %> грн</p>
+                    <p>Опубліковано: <%= ann.createdAt.toLocaleDateString('uk-UA') %>
+                    </p>
+                    <a href="/announcements/<%= ann.id %>">Детальніше</a>
+                </div>
+                <% }); %>
+                    <% } %>
+
+                        <% if (totalPages> 1) { %>
+                            <div>
+                                <% if (currentPage> 1) { %>
+                                    <a href="/?page=<%= currentPage - 1 %>&search=<%= search %>&sort=<%= sort %>">
+                                        Попередня
+                                    </a>
+                                    <% } else { %>
+                                        <span>Попередня</span>
+                                        <% } %>
+
+                                            <% for (let i=1; i <=totalPages; i++) { %>
+                                                <% if (i===currentPage) { %>
+                                                    <strong>
+                                                        <%= i %>
+                                                    </strong>
+                                                    <% } else { %>
+                                                        <a href="/?page=<%= i %>&search=<%= search %>&sort=<%= sort %>">
+                                                            <%= i %>
+                                                        </a>
+                                                        <% } %>
+                                                            <% } %>
+
+                                                                <% if (currentPage < totalPages) { %>
+                                                                    <a
+                                                                        href="/?page=<%= currentPage + 1 %>&search=<%= search %>&sort=<%= sort %>">
+                                                                        Наступна
+                                                                    </a>
+                                                                    <% } else { %>
+                                                                        <span>Наступна</span>
+                                                                        <% } %>
+                            </div>
+                            <% } %>
+</body>
+
+</html>

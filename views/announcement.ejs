@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= announcement.title %>
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <a href="/">← Повернутися на головну</a>
+
+    <div class="card">
+        <h1>
+            <%= announcement.title %>
+        </h1>
+
+        <p>Категорія: <%= announcement.category %>
+        </p>
+        <p>Ціна: <%= announcement.price %> грн</p>
+        <p>Опубліковано: <%= announcement.createdAt.toLocaleDateString('uk-UA') %>
+        </p>
+
+        <h2>Опис</h2>
+        <p>
+            <%= announcement.description %>
+        </p>
+
+        <h2>Контакти</h2>
+        <p>
+            <%= announcement.contactInfo %>
+        </p>
+
+        <button id="delete-btn">Видалити</button>
+    </div>
+
+    <script>
+        const deleteBtn = document.querySelector('#delete-btn');
+        const announcementId = '<%= announcement.id %>';
+
+        deleteBtn.addEventListener('click', async () => {
+            if (!confirm('Ви впевнені що хочете видалити це оголошення?')) {
+                return;
+            }
+
+            const response = await fetch(`/announcements/${announcementId}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                window.location.href = '/';
+            } else {
+                alert('Помилка при видаленні');
+            }
+        });
+    </script>
+</body>
+
+</html>
